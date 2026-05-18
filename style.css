@@ -1,0 +1,291 @@
+/* Variables Globales y Diseño Oscuro Elegante */
+:root {
+    --bg-main: #0f172a; /* Slate 900 */
+    --bg-header: rgba(30, 41, 59, 0.85); /* Slate 800 transparente para glassmorphism */
+    --text-main: #f8fafc; /* Slate 50 */
+    --text-muted: #94a3b8; /* Slate 400 */
+    --accent: #6366f1; /* Indigo 500 */
+    --accent-hover: #4f46e5; /* Indigo 600 */
+    
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Fuentes */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'Inter', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header & Controls */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: var(--bg-header);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo i {
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+.logo h1 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+select {
+    appearance: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 0.6rem 2.5rem 0.6rem 1rem;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+    transition: var(--transition);
+    /* Flecha personalizada */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2394a3b8%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+
+select:hover, select:focus {
+    border-color: var(--accent);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+select option {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+.primary-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+}
+
+.primary-btn i {
+    font-size: 1.1rem;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+/* Main Palette Container */
+.palette-container {
+    flex: 1;
+    display: grid;
+    /* Por defecto generamos una grilla dinámica en JS, pero acá está el base */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    height: calc(100vh - 85px);
+}
+
+/* Color Card */
+.color-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: relative;
+    transition: background-color 0.4s ease, transform 0.2s ease;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.color-card:hover .color-info {
+    transform: translateY(-5px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Información del color */
+.color-info {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    padding: 1.2rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: white; /* Siempre blanco para contraste con fondos random */
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 140px;
+}
+
+/* Texto HEX/HSL clickable */
+.color-hex {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+}
+
+.color-hex:hover {
+    color: var(--accent);
+    transform: scale(1.05);
+}
+
+.color-hsl {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: -0.25rem;
+}
+
+/* Botón de Bloqueo */
+.lock-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.lock-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.lock-btn.locked {
+    color: #facc15; /* Yellow 400 */
+}
+
+/* Toast Notification */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+.toast-container.show {
+    opacity: 1;
+    bottom: 3rem;
+}
+
+.toast {
+    background: var(--bg-header);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.toast i {
+    color: #10b981; /* Emerald 500 */
+    font-size: 1.2rem;
+}
+
+.toast span {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .palette-container {
+        height: auto;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 200px;
+    }
+}

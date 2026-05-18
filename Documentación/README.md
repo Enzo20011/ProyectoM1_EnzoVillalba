@@ -1,6 +1,6 @@
-# Colorfly Studio - Generador de Paletas 🎨
+# Colorfly Studio - Generador de Paletas Interactivo 🎨
 
-Bienvenido al repositorio de **Colorfly Studio**, una herramienta interactiva para generar paletas de colores de forma rápida e intuitiva.
+Bienvenido al repositorio de **Colorfly Studio - Generador de Paletas Interactivo**, una herramienta para crear esquemas de colores de forma rápida e intuitiva.
 Este proyecto fue desarrollado como Proyecto Integrador para el Módulo 1 (Full Stack) por **Enzo Villalba**.
 
 ## 🚀 Características y Funcionalidades
@@ -48,7 +48,7 @@ Para correr este proyecto en tu entorno local, sigue estos pasos:
 ## 🌐 Despliegue
 
 La aplicación se encuentra desplegada y pública a través de **GitHub Pages**.
-Puedes probarla en vivo aquí: **[Demo de Colorfly Studio](https://Enzo20011.github.io/ProyectoM1_EnzoVillalba/)**
+Puedes probarla en vivo aquí: **[Demo de Colorfly Studio - Generador de Paletas Interactivo](https://Enzo20011.github.io/ProyectoM1_EnzoVillalba/)**
 
 ## 📁 Documentación en Google Drive
 

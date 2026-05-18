@@ -1,6 +1,6 @@
 # Documentación de Uso de Inteligencia Artificial
 
-Durante el desarrollo de este Proyecto Integrador (Generador de Paletas para Colorfly Studio), utilicé Inteligencia Artificial como una herramienta de apoyo y consulta externa para resolver dudas puntuales de maquetación, entender mejor CSS Grid y generar las fórmulas matemáticas necesarias en JavaScript.
+Durante el desarrollo de este Proyecto Integrador (Colorfly Studio - Generador de Paletas Interactivo), utilicé Inteligencia Artificial como una herramienta de apoyo y consulta externa para resolver dudas puntuales de maquetación, entender mejor CSS Grid y generar las fórmulas matemáticas necesarias en JavaScript.
 
 A continuación, detallo los prompts principales que utilicé y cómo me ayudaron a avanzar en el proyecto.
 

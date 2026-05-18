@@ -276,6 +276,20 @@ select option {
     margin-top: -0.25rem;
 }
 
+/* Texto HSL como valor primario (más largo que HEX, necesita fuente más chica) */
+.color-hsl-primary {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.color-hsl-primary:hover {
+    color: var(--accent);
+    transform: scale(1.05);
+}
+
 /* Botón de Bloqueo */
 .lock-btn {
     background: transparent;

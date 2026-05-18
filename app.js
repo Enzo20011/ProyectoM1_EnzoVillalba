@@ -63,7 +63,7 @@ function setupEventListeners() {
     });
 }
 
-// Cambia el formato de visualización (HEX o HSL) y genera nueva paleta
+// Solo actualiza el botón activo - NO toca la paleta en pantalla
 function setActiveFormat(format) {
     activeFormat = format;
 
@@ -73,8 +73,7 @@ function setActiveFormat(format) {
     btnHsl.classList.toggle('active', format === 'hsl');
     btnHsl.setAttribute('aria-pressed', format === 'hsl');
 
-    // Solo cambia el formato visual, NO regenera colores
-    renderPalette();
+    // NO renderiza ni regenera - los colores cambian recién con "Generar Paleta"
 }
 
 // Generadores
@@ -182,7 +181,8 @@ function renderPalette() {
         const secondaryValue = activeFormat === 'hex' ? color.hsl : color.hex;
 
         const primaryText = document.createElement('span');
-        primaryText.className = 'color-hex'; // reutilizamos el estilo grande
+        // Si el formato primario es HSL, usamos fuente más chica porque el string es más largo
+        primaryText.className = activeFormat === 'hsl' ? 'color-hsl-primary' : 'color-hex';
         primaryText.textContent = primaryValue;
         primaryText.setAttribute('aria-label', `Color ${activeFormat.toUpperCase()}: ${primaryValue}. Haz clic para copiar.`);
         primaryText.onclick = () => copyToClipboard(primaryValue);

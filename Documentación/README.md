@@ -44,7 +44,7 @@ Para correr este proyecto en tu entorno local, sigue estos pasos:
 ## 🌐 Despliegue
 
 La aplicación se encuentra desplegada y pública a través de **GitHub Pages**. 
-Puedes probarla en vivo aquí: **[Enlace a la demo de GitHub Pages]** *(Reemplazar con el link de GH Pages)*
+Puedes probarla en vivo aquí: **[Demo de Colorfly Studio](https://musicparty-1.github.io/ProyectoM1_EnzoVillalba/)**
 
 ---
 *Hecho por Enzo Villalba.*

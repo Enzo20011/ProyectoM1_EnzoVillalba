@@ -16,7 +16,6 @@ A continuación, detallo los prompts principales que utilicé y cómo me ayudaro
 **Resultado y Aplicación:**
 La IA me sugirió usar `<header>`, `<main>` y agrupar los controles dentro de un `<div class="controls">`. También me recordó usar el atributo `aria-label` en el select y en el botón principal de "Generar Paleta" para mejorar la accesibilidad, lo cual integré directamente en mi `index.html`.
 
-
 ---
 
 ## 2. Layout con CSS Grid y Diseño Moderno
@@ -28,7 +27,6 @@ La IA me sugirió usar `<header>`, `<main>` y agrupar los controles dentro de un
 
 **Resultado y Aplicación:**
 Me explicó cómo usar `grid-template-columns: repeat(X, 1fr)` dinámicamente desde JavaScript para dividir la pantalla en partes iguales. Además, me dio la propiedad `backdrop-filter: blur(12px)` para crear el efecto de vidrio esmerilado que apliqué en el header y en los contenedores de texto de las tarjetas de color.
-
 
 ---
 
@@ -42,7 +40,6 @@ Me explicó cómo usar `grid-template-columns: repeat(X, 1fr)` dinámicamente de
 **Resultado y Aplicación:**
 Me proporcionó la función para generar el HEX usando `Math.random()`. También me resolvió el algoritmo matemático para transformar de HEX a HSL. Analicé el código, lo adapté a mi manejo de estado (donde guardo objetos con `{hex, hsl, locked}`) y lo incorporé en `app.js`.
 
-
 ---
 
 ## 4. Funcionalidad Extra: Copiar al Portapapeles y Notificaciones
@@ -54,7 +51,6 @@ Me proporcionó la función para generar el HEX usando `Math.random()`. También
 
 **Resultado y Aplicación:**
 La IA me recomendó usar la API moderna `navigator.clipboard.writeText()` para la copia. Para el Toast, me sugirió usar `setTimeout` para agregar y remover una clase CSS de visibilidad después de 2000 milisegundos. Implementé esta lógica y armé yo mismo las transiciones en el archivo CSS.
-
 
 ---
 

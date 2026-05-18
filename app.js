@@ -11,7 +11,7 @@ let paletteSize = 6;
 
 // Inicialización
 function init() {
-    // Intentar cargar de localStorage (usando v2 para evitar bugs de caché)
+    // Intentar cargar de localStorage
     const savedPalette = localStorage.getItem('colorfly_palette_v2');
     const savedSize = localStorage.getItem('colorfly_size_v2');
 

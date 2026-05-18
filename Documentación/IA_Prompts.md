@@ -13,7 +13,7 @@ A continuación, detallo los prompts principales que utilicé y cómo me ayudaro
 **Prompt Utilizado:**
 > "Estoy armando un proyecto web de un generador de paletas de colores. Necesito una estructura HTML5 semántica que incluya un header con un logo, un select para elegir la cantidad de colores (6, 8 o 9) y un botón principal. También necesito un contenedor principal (main) donde inyectaré tarjetas de color después."
 
-**Resultado y Aplicación:** 
+**Resultado y Aplicación:**
 La IA me sugirió usar `<header>`, `<main>` y agrupar los controles dentro de un `<div class="controls">`. También me recordó usar el atributo `aria-label` en el select y en el botón principal de "Generar Paleta" para mejorar la accesibilidad, lo cual integré directamente en mi `index.html`.
 
 ---

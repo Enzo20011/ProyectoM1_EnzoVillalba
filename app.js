@@ -1,6 +1,8 @@
 // Variables del DOM
 const paletteContainer = document.getElementById('palette-container');
 const generateBtn = document.getElementById('generate-btn');
+const btnHex = document.getElementById('btn-hex');
+const btnHsl = document.getElementById('btn-hsl');
 const sizeSelect = document.getElementById('palette-size');
 const toastContainer = document.getElementById('toast-container');
 const toastMessage = document.getElementById('toast-message');
@@ -8,6 +10,7 @@ const toastMessage = document.getElementById('toast-message');
 // Estado de la aplicación
 let currentPalette = [];
 let paletteSize = 6;
+let activeFormat = 'hex'; // 'hex' | 'hsl'
 
 // Inicialización
 function init() {
@@ -38,7 +41,9 @@ function init() {
 // Configurar Event Listeners
 function setupEventListeners() {
     generateBtn.addEventListener('click', generateNewPalette);
-    
+    btnHex.addEventListener('click', () => setActiveFormat('hex'));
+    btnHsl.addEventListener('click', () => setActiveFormat('hsl'));
+
     sizeSelect.addEventListener('change', (e) => {
         const newSize = parseInt(e.target.value);
         if (newSize > paletteSize) {
@@ -56,6 +61,20 @@ function setupEventListeners() {
         localStorage.setItem('colorfly_size_v2', paletteSize);
         saveAndRender();
     });
+}
+
+// Cambia el formato de visualización (HEX o HSL) y genera nueva paleta
+function setActiveFormat(format) {
+    activeFormat = format;
+
+    // Actualizar clases y aria-pressed de ambos botones
+    btnHex.classList.toggle('active', format === 'hex');
+    btnHex.setAttribute('aria-pressed', format === 'hex');
+    btnHsl.classList.toggle('active', format === 'hsl');
+    btnHsl.setAttribute('aria-pressed', format === 'hsl');
+
+    // Genera nueva paleta con el formato elegido (respetando bloqueos)
+    generateNewPalette();
 }
 
 // Generadores
@@ -158,20 +177,23 @@ function renderPalette() {
         lockBtn.setAttribute('aria-label', color.locked ? 'Desbloquear color' : 'Bloquear color');
         lockBtn.onclick = () => toggleLock(index);
         
-        // Texto HEX y HSL
-        const hexText = document.createElement('span');
-        hexText.className = 'color-hex';
-        hexText.textContent = color.hex;
-        hexText.setAttribute('aria-label', `Color HEX: ${color.hex}. Haz clic para copiar.`);
-        hexText.onclick = () => copyToClipboard(color.hex);
-        
-        const hslText = document.createElement('span');
-        hslText.className = 'color-hsl';
-        hslText.textContent = color.hsl;
+        // Texto primario (el formato activo) y secundario
+        const primaryValue = activeFormat === 'hex' ? color.hex : color.hsl;
+        const secondaryValue = activeFormat === 'hex' ? color.hsl : color.hex;
+
+        const primaryText = document.createElement('span');
+        primaryText.className = 'color-hex'; // reutilizamos el estilo grande
+        primaryText.textContent = primaryValue;
+        primaryText.setAttribute('aria-label', `Color ${activeFormat.toUpperCase()}: ${primaryValue}. Haz clic para copiar.`);
+        primaryText.onclick = () => copyToClipboard(primaryValue);
+
+        const secondaryText = document.createElement('span');
+        secondaryText.className = 'color-hsl'; // estilo secundario pequeño
+        secondaryText.textContent = secondaryValue;
 
         infoDiv.appendChild(lockBtn);
-        infoDiv.appendChild(hexText);
-        infoDiv.appendChild(hslText);
+        infoDiv.appendChild(primaryText);
+        infoDiv.appendChild(secondaryText);
         card.appendChild(infoDiv);
         
         paletteContainer.appendChild(card);

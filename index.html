@@ -31,7 +31,18 @@
                 </select>
             </div>
             
-            <button id="generate-btn" class="primary-btn" aria-label="Generar nueva paleta">
+            <div class="format-btns" role="group" aria-label="Formato de visualización de color">
+                <button id="btn-hex" class="format-btn active" aria-pressed="true" aria-label="Mostrar colores en formato HEX">
+                    <i class="ph ph-hash"></i>
+                    HEX
+                </button>
+                <button id="btn-hsl" class="format-btn" aria-pressed="false" aria-label="Mostrar colores en formato HSL">
+                    <i class="ph ph-circle-half-tilt"></i>
+                    HSL
+                </button>
+            </div>
+
+            <button id="generate-btn" class="primary-btn" aria-label="Generar nueva paleta de colores">
                 <i class="ph ph-magic-wand"></i>
                 Generar Paleta
             </button>

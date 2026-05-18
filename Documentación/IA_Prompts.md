@@ -16,9 +16,6 @@ A continuación, detallo los prompts principales que utilicé y cómo me ayudaro
 **Resultado y Aplicación:**
 La IA me sugirió usar `<header>`, `<main>` y agrupar los controles dentro de un `<div class="controls">`. También me recordó usar el atributo `aria-label` en el select y en el botón principal de "Generar Paleta" para mejorar la accesibilidad, lo cual integré directamente en mi `index.html`.
 
-**Captura del resultado:**
-
-![Resultado - Estructura HTML semántica con header, logo, select y botón](capturas/01_html_estructura.png)
 
 ---
 
@@ -32,9 +29,6 @@ La IA me sugirió usar `<header>`, `<main>` y agrupar los controles dentro de un
 **Resultado y Aplicación:**
 Me explicó cómo usar `grid-template-columns: repeat(X, 1fr)` dinámicamente desde JavaScript para dividir la pantalla en partes iguales. Además, me dio la propiedad `backdrop-filter: blur(12px)` para crear el efecto de vidrio esmerilado que apliqué en el header y en los contenedores de texto de las tarjetas de color.
 
-**Captura del resultado:**
-
-![Resultado - CSS Grid con 6 columnas y efecto glassmorphism en las tarjetas](capturas/02_css_grid_glassmorphism.png)
 
 ---
 
@@ -48,9 +42,6 @@ Me explicó cómo usar `grid-template-columns: repeat(X, 1fr)` dinámicamente de
 **Resultado y Aplicación:**
 Me proporcionó la función para generar el HEX usando `Math.random()`. También me resolvió el algoritmo matemático para transformar de HEX a HSL. Analicé el código, lo adapté a mi manejo de estado (donde guardo objetos con `{hex, hsl, locked}`) y lo incorporé en `app.js`.
 
-**Captura del resultado:**
-
-![Resultado - Colores con sus valores HEX y HSL renderizados en pantalla](capturas/03_hex_hsl_conversion.png)
 
 ---
 
@@ -64,9 +55,6 @@ Me proporcionó la función para generar el HEX usando `Math.random()`. También
 **Resultado y Aplicación:**
 La IA me recomendó usar la API moderna `navigator.clipboard.writeText()` para la copia. Para el Toast, me sugirió usar `setTimeout` para agregar y remover una clase CSS de visibilidad después de 2000 milisegundos. Implementé esta lógica y armé yo mismo las transiciones en el archivo CSS.
 
-**Captura del resultado:**
-
-![Resultado - Toast de notificación "Copiado" apareciendo al hacer clic en un color](capturas/04_toast_clipboard.png)
 
 ---
 

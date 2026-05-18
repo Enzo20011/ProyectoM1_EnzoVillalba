@@ -11,9 +11,9 @@ let paletteSize = 6;
 
 // Inicialización
 function init() {
-    // Intentar cargar de localStorage
-    const savedPalette = localStorage.getItem('colorfly_palette');
-    const savedSize = localStorage.getItem('colorfly_size');
+    // Intentar cargar de localStorage (usando v2 para evitar bugs de caché)
+    const savedPalette = localStorage.getItem('colorfly_palette_v2');
+    const savedSize = localStorage.getItem('colorfly_size_v2');
 
     if (savedSize) {
         paletteSize = parseInt(savedSize);
@@ -53,7 +53,7 @@ function setupEventListeners() {
         }
         
         paletteSize = newSize;
-        localStorage.setItem('colorfly_size', paletteSize);
+        localStorage.setItem('colorfly_size_v2', paletteSize);
         saveAndRender();
     });
 }
@@ -131,7 +131,7 @@ function generateNewPalette() {
 }
 
 function saveAndRender() {
-    localStorage.setItem('colorfly_palette', JSON.stringify(currentPalette));
+    localStorage.setItem('colorfly_palette_v2', JSON.stringify(currentPalette));
     renderPalette();
 }
 

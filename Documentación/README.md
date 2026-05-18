@@ -54,7 +54,7 @@ Puedes probarla en vivo aquí: **[Demo de Colorfly Studio - Generador de Paletas
 
 La carpeta compartida en Google Drive contiene capturas de pantalla y GIFs que muestran el flujo principal de la aplicación, junto con la documentación del uso de IA.
 
-🔗 **[Ver carpeta en Google Drive](TU_LINK_AQUI)**
+🔗 **[Ver carpeta en Google Drive](https://drive.google.com/drive/u/0/folders/1JmSHmznUCe5NMb-6iGFVlQXgqILVsw3g)**
 
 ---
 *Hecho por Enzo Villalba.*

@@ -46,5 +46,11 @@ Para correr este proyecto en tu entorno local, sigue estos pasos:
 La aplicación se encuentra desplegada y pública a través de **GitHub Pages**. 
 Puedes probarla en vivo aquí: **[Demo de Colorfly Studio](https://Enzo20011.github.io/ProyectoM1_EnzoVillalba/)**
 
+## 📁 Documentación en Google Drive
+
+La carpeta compartida en Google Drive contiene capturas de pantalla y GIFs que muestran el flujo principal de la aplicación, junto con la documentación del uso de IA.
+
+🔗 **[Ver carpeta en Google Drive](TU_LINK_AQUI)**
+
 ---
 *Hecho por Enzo Villalba.*

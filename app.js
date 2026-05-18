@@ -73,8 +73,8 @@ function setActiveFormat(format) {
     btnHsl.classList.toggle('active', format === 'hsl');
     btnHsl.setAttribute('aria-pressed', format === 'hsl');
 
-    // Genera nueva paleta con el formato elegido (respetando bloqueos)
-    generateNewPalette();
+    // Solo cambia el formato visual, NO regenera colores
+    renderPalette();
 }
 
 // Generadores

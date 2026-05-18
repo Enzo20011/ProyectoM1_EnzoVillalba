@@ -26,7 +26,7 @@ Para correr este proyecto en tu entorno local, sigue estos pasos:
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone https://github.com/EnzoVillalba/ProyectoM1_EnzoVillalba.git
+   git clone https://github.com/Enzo20011/ProyectoM1_EnzoVillalba.git
    ```
 2. **Acceder a la carpeta:**
    ```bash

@@ -211,7 +211,6 @@ select option {
 .palette-container {
     flex: 1;
     display: grid;
-    /* Por defecto generamos una grilla dinámica en JS, pero acá está el base */
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     height: calc(100vh - 85px);
 }

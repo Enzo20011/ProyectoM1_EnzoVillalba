@@ -1,4 +1,3 @@
-// Variables del DOM
 const paletteContainer = document.getElementById('palette-container');
 const generateBtn = document.getElementById('generate-btn');
 const btnHex = document.getElementById('btn-hex');
@@ -7,14 +6,11 @@ const sizeSelect = document.getElementById('palette-size');
 const toastContainer = document.getElementById('toast-container');
 const toastMessage = document.getElementById('toast-message');
 
-// Estado de la aplicación
 let currentPalette = [];
 let paletteSize = 6;
-let activeFormat = 'hex'; // 'hex' | 'hsl'
+let activeFormat = 'hex';
 
-// Inicialización
 function init() {
-    // Intentar cargar de localStorage
     const savedPalette = localStorage.getItem('colorfly_palette_v2');
     const savedSize = localStorage.getItem('colorfly_size_v2');
 
@@ -25,7 +21,6 @@ function init() {
 
     if (savedPalette) {
         currentPalette = JSON.parse(savedPalette);
-        // Validar si el tamaño guardado coincide con el actual, si no, regenerar
         if (currentPalette.length !== paletteSize) {
             generateNewPalette();
         } else {
@@ -38,7 +33,6 @@ function init() {
     setupEventListeners();
 }
 
-// Configurar Event Listeners
 function setupEventListeners() {
     generateBtn.addEventListener('click', generateNewPalette);
     btnHex.addEventListener('click', () => setActiveFormat('hex'));
@@ -47,13 +41,11 @@ function setupEventListeners() {
     sizeSelect.addEventListener('change', (e) => {
         const newSize = parseInt(e.target.value);
         if (newSize > paletteSize) {
-            // Añadir colores nuevos pero mantener los bloqueados si es posible
             const toAdd = newSize - paletteSize;
             for(let i=0; i<toAdd; i++) {
                 currentPalette.push(createRandomColorObj());
             }
         } else if (newSize < paletteSize) {
-            // Recortar el array (incluso si están bloqueados, se quitan los últimos)
             currentPalette = currentPalette.slice(0, newSize);
         }
         
@@ -63,20 +55,15 @@ function setupEventListeners() {
     });
 }
 
-// Solo actualiza el botón activo - NO toca la paleta en pantalla
 function setActiveFormat(format) {
     activeFormat = format;
 
-    // Actualizar clases y aria-pressed de ambos botones
     btnHex.classList.toggle('active', format === 'hex');
     btnHex.setAttribute('aria-pressed', format === 'hex');
     btnHsl.classList.toggle('active', format === 'hsl');
     btnHsl.setAttribute('aria-pressed', format === 'hsl');
-
-    // NO renderiza ni regenera - los colores cambian recién con "Generar Paleta"
 }
 
-// Generadores
 function generateRandomHex() {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -86,7 +73,6 @@ function generateRandomHex() {
     return color;
 }
 
-// Convertir HEX a HSL (para mostrar el segundo formato requerido)
 function hexToHsl(hex) {
     let r = 0, g = 0, b = 0;
     if (hex.length === 7) {
@@ -132,14 +118,12 @@ function createRandomColorObj() {
 }
 
 function generateNewPalette() {
-    // Si currentPalette está vacío, lo llenamos
     if (currentPalette.length === 0 || currentPalette.length !== paletteSize) {
         currentPalette = [];
         for (let i = 0; i < paletteSize; i++) {
             currentPalette.push(createRandomColorObj());
         }
     } else {
-        // Solo actualizamos los NO bloqueados
         currentPalette = currentPalette.map(color => {
             if (color.locked) return color;
             return createRandomColorObj();
@@ -153,11 +137,9 @@ function saveAndRender() {
     renderPalette();
 }
 
-// Renderizado del DOM
 function renderPalette() {
     paletteContainer.innerHTML = '';
     
-    // Ajustar columnas del grid según la cantidad
     paletteContainer.style.gridTemplateColumns = `repeat(${paletteSize}, 1fr)`;
 
     currentPalette.forEach((color, index) => {
@@ -165,30 +147,26 @@ function renderPalette() {
         card.className = 'color-card';
         card.style.backgroundColor = color.hex;
         
-        // Contenedor de info
         const infoDiv = document.createElement('div');
         infoDiv.className = 'color-info';
         
-        // Bloqueo
         const lockBtn = document.createElement('button');
         lockBtn.className = `lock-btn ${color.locked ? 'locked' : ''}`;
         lockBtn.innerHTML = color.locked ? '<i class="ph-fill ph-lock-key"></i>' : '<i class="ph ph-lock-key-open"></i>';
         lockBtn.setAttribute('aria-label', color.locked ? 'Desbloquear color' : 'Bloquear color');
         lockBtn.onclick = () => toggleLock(index);
         
-        // Texto primario (el formato activo) y secundario
         const primaryValue = activeFormat === 'hex' ? color.hex : color.hsl;
         const secondaryValue = activeFormat === 'hex' ? color.hsl : color.hex;
 
         const primaryText = document.createElement('span');
-        // Si el formato primario es HSL, usamos fuente más chica porque el string es más largo
         primaryText.className = activeFormat === 'hsl' ? 'color-hsl-primary' : 'color-hex';
         primaryText.textContent = primaryValue;
         primaryText.setAttribute('aria-label', `Color ${activeFormat.toUpperCase()}: ${primaryValue}. Haz clic para copiar.`);
         primaryText.onclick = () => copyToClipboard(primaryValue);
 
         const secondaryText = document.createElement('span');
-        secondaryText.className = 'color-hsl'; // estilo secundario pequeño
+        secondaryText.className = 'color-hsl';
         secondaryText.textContent = secondaryValue;
 
         infoDiv.appendChild(lockBtn);
@@ -200,7 +178,6 @@ function renderPalette() {
     });
 }
 
-// Funciones Auxiliares
 function toggleLock(index) {
     currentPalette[index].locked = !currentPalette[index].locked;
     localStorage.setItem('colorfly_palette_v2', JSON.stringify(currentPalette));
@@ -238,5 +215,4 @@ function showToast(message) {
     }, 2500);
 }
 
-// Iniciar app al cargar la página
 window.addEventListener('DOMContentLoaded', init);

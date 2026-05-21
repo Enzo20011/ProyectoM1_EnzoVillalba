@@ -203,7 +203,18 @@ function renderPalette() {
 // Funciones Auxiliares
 function toggleLock(index) {
     currentPalette[index].locked = !currentPalette[index].locked;
-    saveAndRender();
+    localStorage.setItem('colorfly_palette_v2', JSON.stringify(currentPalette));
+    
+    const card = paletteContainer.children[index];
+    if (card) {
+        const lockBtn = card.querySelector('.lock-btn');
+        if (lockBtn) {
+            const isLocked = currentPalette[index].locked;
+            lockBtn.className = `lock-btn ${isLocked ? 'locked' : ''}`;
+            lockBtn.innerHTML = isLocked ? '<i class="ph-fill ph-lock-key"></i>' : '<i class="ph ph-lock-key-open"></i>';
+            lockBtn.setAttribute('aria-label', isLocked ? 'Desbloquear color' : 'Bloquear color');
+        }
+    }
 }
 
 function copyToClipboard(text) {

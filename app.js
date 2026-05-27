@@ -140,7 +140,7 @@ function saveAndRender() {
 function renderPalette() {
     paletteContainer.innerHTML = '';
     
-    paletteContainer.style.gridTemplateColumns = `repeat(${paletteSize}, 1fr)`;
+    paletteContainer.style.setProperty('--palette-size', paletteSize);
 
     currentPalette.forEach((color, index) => {
         const card = document.createElement('div');

@@ -5,6 +5,10 @@ const btnHsl = document.getElementById('btn-hsl');
 const sizeSelect = document.getElementById('palette-size');
 const toastContainer = document.getElementById('toast-container');
 const toastMessage = document.getElementById('toast-message');
+const helpBtn = document.getElementById('help-btn');
+const helpModal = document.getElementById('help-modal');
+const closeModalBtn = document.getElementById('close-modal-btn');
+const closeGuideBtn = document.getElementById('close-guide-btn');
 
 let currentPalette = [];
 let paletteSize = 6;
@@ -53,6 +57,38 @@ function setupEventListeners() {
         localStorage.setItem('colorfly_size_v2', paletteSize);
         saveAndRender();
     });
+
+    helpBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    closeGuideBtn.addEventListener('click', closeModal);
+    
+    helpModal.addEventListener('click', (e) => {
+        if (e.target === helpModal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') {
+            const activeEl = document.activeElement;
+            if (activeEl.tagName !== 'BUTTON' && activeEl.tagName !== 'SELECT' && activeEl.tagName !== 'INPUT' && activeEl.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                generateNewPalette();
+            }
+        } else if (e.key === 'Escape' && helpModal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+}
+
+function openModal() {
+    helpModal.classList.add('show');
+    helpModal.setAttribute('aria-hidden', 'false');
+    closeModalBtn.focus();
+}
+
+function closeModal() {
+    helpModal.classList.remove('show');
+    helpModal.setAttribute('aria-hidden', 'true');
+    helpBtn.focus();
 }
 
 function setActiveFormat(format) {
@@ -154,6 +190,7 @@ function renderPalette() {
         lockBtn.className = `lock-btn ${color.locked ? 'locked' : ''}`;
         lockBtn.innerHTML = color.locked ? '<i class="ph-fill ph-lock-key"></i>' : '<i class="ph ph-lock-key-open"></i>';
         lockBtn.setAttribute('aria-label', color.locked ? 'Desbloquear color' : 'Bloquear color');
+        lockBtn.setAttribute('data-tooltip', color.locked ? 'Desbloquear' : 'Bloquear');
         lockBtn.onclick = () => toggleLock(index);
         
         const primaryValue = activeFormat === 'hex' ? color.hex : color.hsl;
@@ -163,6 +200,7 @@ function renderPalette() {
         primaryText.className = activeFormat === 'hsl' ? 'color-hsl-primary' : 'color-hex';
         primaryText.textContent = primaryValue;
         primaryText.setAttribute('aria-label', `Color ${activeFormat.toUpperCase()}: ${primaryValue}. Haz clic para copiar.`);
+        primaryText.setAttribute('data-tooltip', 'Copiar color');
         primaryText.onclick = () => copyToClipboard(primaryValue);
 
         const secondaryText = document.createElement('span');
@@ -190,6 +228,7 @@ function toggleLock(index) {
             lockBtn.className = `lock-btn ${isLocked ? 'locked' : ''}`;
             lockBtn.innerHTML = isLocked ? '<i class="ph-fill ph-lock-key"></i>' : '<i class="ph ph-lock-key-open"></i>';
             lockBtn.setAttribute('aria-label', isLocked ? 'Desbloquear color' : 'Bloquear color');
+            lockBtn.setAttribute('data-tooltip', isLocked ? 'Desbloquear' : 'Bloquear');
         }
     }
 }

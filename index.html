@@ -19,7 +19,7 @@
         </div>
         
         <div class="controls">
-            <div class="input-group">
+            <div class="input-group" data-tooltip="Cantidad de colores de la paleta">
                 <label for="palette-size">Cantidad:</label>
                 <select id="palette-size" aria-label="Seleccionar tamaño de paleta">
                     <option value="6">6 Colores</option>
@@ -29,19 +29,24 @@
             </div>
             
             <div class="format-btns" role="group" aria-label="Formato de visualización de color">
-                <button id="btn-hex" class="format-btn active" aria-pressed="true" aria-label="Mostrar colores en formato HEX">
+                <button id="btn-hex" class="format-btn active" aria-pressed="true" aria-label="Mostrar colores en formato HEX" data-tooltip="Formato HEX (#RRGGBB)">
                     <i class="ph ph-hash"></i>
                     HEX
                 </button>
-                <button id="btn-hsl" class="format-btn" aria-pressed="false" aria-label="Mostrar colores en formato HSL">
+                <button id="btn-hsl" class="format-btn" aria-pressed="false" aria-label="Mostrar colores en formato HSL" data-tooltip="Formato HSL (Matiz, Sat, Lum)">
                     <i class="ph ph-circle-half-tilt"></i>
                     HSL
                 </button>
             </div>
 
-            <button id="generate-btn" class="primary-btn" aria-label="Generar nueva paleta de colores">
+            <button id="generate-btn" class="primary-btn" aria-label="Generar nueva paleta de colores" data-tooltip="Generar nuevos colores (Espacio)">
                 <i class="ph ph-magic-wand"></i>
                 Generar Paleta
+            </button>
+
+            <button id="help-btn" class="secondary-btn" aria-label="Mostrar guía de ayuda" data-tooltip="Guía de uso">
+                <i class="ph ph-question"></i>
+                Ayuda
             </button>
         </div>
     </header>
@@ -53,6 +58,44 @@
         <div class="toast">
             <i class="ph ph-check-circle"></i>
             <span id="toast-message">Color copiado al portapapeles</span>
+        </div>
+    </div>
+
+    <!-- Modal de Guía de Ayuda -->
+    <div id="help-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button id="close-modal-btn" class="close-btn" aria-label="Cerrar guía de ayuda">
+                <i class="ph ph-x"></i>
+            </button>
+            <h2 id="modal-title">¿Cómo usar Colorfly Studio? 🎨</h2>
+            <p class="modal-subtitle">Domina el generador de paletas interactivo con esta guía rápida.</p>
+            
+            <div class="guide-grid">
+                <div class="guide-item">
+                    <div class="guide-icon"><i class="ph ph-magic-wand"></i></div>
+                    <h3>Generar Paletas</h3>
+                    <p>Haz clic en <strong>Generar Paleta</strong> (o presiona la <strong>Barra Espaciadora</strong>) para obtener combinaciones aleatorias al instante.</p>
+                </div>
+                <div class="guide-item">
+                    <div class="guide-icon"><i class="ph ph-lock-key"></i></div>
+                    <h3>Bloquear Colores</h3>
+                    <p>Usa el candado 🔒 en cada color para congelarlo. Al generar una nueva paleta, los colores bloqueados no cambiarán.</p>
+                </div>
+                <div class="guide-item">
+                    <div class="guide-icon"><i class="ph ph-copy"></i></div>
+                    <h3>Copiar al Portapapeles</h3>
+                    <p>Haz clic sobre el código de color (HEX o HSL) de cualquier tarjeta para copiarlo al instante. Verás una notificación Toast de confirmación.</p>
+                </div>
+                <div class="guide-item">
+                    <div class="guide-icon"><i class="ph ph-circle-half-tilt"></i></div>
+                    <h3>Formatos y Tamaño</h3>
+                    <p>Elige mostrar la paleta con 6, 8 o 9 colores y alterna el formato entre HEX y HSL para ver y copiar los valores fácilmente.</p>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button id="close-guide-btn" class="primary-btn">¡Entendido!</button>
+            </div>
         </div>
     </div>
 
